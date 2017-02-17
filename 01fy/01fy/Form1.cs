@@ -52,9 +52,9 @@ namespace _01fy
                 var size = node.SelectSingleNode(".//div[@class='div02']");
                 if(size == null)
                     size = node.SelectSingleNode(".//div[@class='div07']");
-                fy.Size = size.InnerText;
+                fy.Size = size.InnerText.Trim();
                 var price = node.SelectSingleNode(".//div[@class='div03']");
-                fy.Price = price.InnerText;
+                fy.Price = price.InnerText.Trim();
                 var time = node.SelectSingleNode(".//div[@class='div04']");
                 fy.Time = time.InnerText.Trim();
                 pagedata.Data.Add(fy);
@@ -133,6 +133,7 @@ namespace _01fy
 
         private void tm_Sale_Tick(object sender, EventArgs e)
         {
+            tm_Sale.Interval = 30000;
             tm_Sale.Enabled = false;
             LoadSale();
             tm_Sale.Enabled = true;
@@ -205,6 +206,7 @@ namespace _01fy
 
         private void tm_Spcz_Tick(object sender, EventArgs e)
         {
+            tm_Spcz.Interval = 30000;
             tm_Spcz.Enabled = false;
             LoadSpcz();
             tm_Spcz.Enabled = true;
@@ -277,6 +279,7 @@ namespace _01fy
 
         private void tm_XZLCZ_Tick(object sender, EventArgs e)
         {
+            tm_XZLCZ.Interval = 30000;
             tm_XZLCZ.Enabled = false;
             LoadXZLCZ();
             tm_XZLCZ.Enabled = true;
