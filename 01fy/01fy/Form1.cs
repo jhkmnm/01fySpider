@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using HAP = HtmlAgilityPack;
 
@@ -18,31 +14,30 @@ namespace _01fy
         /// <summary>
         /// 商铺
         /// </summary>
-        string Url_Spcz = "http://bj.01fy.cn/spcz/";
+        string Url_Spcz = "http://bj.01fy.cn/spcs/";
         /// <summary>
         /// 字字楼
         /// </summary>
-        string Url_XZLCZ = "http://bj.01fy.cn/xzlcz/";
+        string Url_XZLCZ = "http://bj.01fy.cn/xzlcs/";
 
         string Url_list = "list_2_0_0_0-0_0_0-0_0_2_0_{0}_.html";//最后一个是页码
 
         public Form1()
         {
             InitializeComponent();
-            //LoadSale();
             tm_Sale.Enabled = true;
             tm_Spcz.Enabled = true;
             tm_XZLCZ.Enabled = true;
         }
 
-        private PageData GetHtml(string url)
+        private List<FYData> GetHtml(string url)
         {
             HAP.HtmlDocument doc = new HAP.HtmlDocument();
             HAP.HtmlWeb web = new HAP.HtmlWeb();
             doc = web.Load(url);
             var list = doc.GetElementbyId("list").SelectNodes(".//ul/li");
-            PageData pagedata = new PageData();
-            pagedata.Data = new List<FYData>();
+            var data = new List<FYData>();
+            
             foreach(HAP.HtmlNode node in list)
             {
                 FYData fy = new FYData();
@@ -57,38 +52,35 @@ namespace _01fy
                 fy.Price = price.InnerText.Trim();
                 var time = node.SelectSingleNode(".//div[@class='div04']");
                 fy.Time = time.InnerText.Trim();
-                pagedata.Data.Add(fy);
+                int hour = 0;
+                int.TryParse(fy.Time.Replace("小时前", ""), out hour);
+                if (fy.Time.Contains("天") || fy.Time.Contains("月"))
+                    break;
+                else if (hour > DateTime.Now.Hour)
+                    break;
+                else
+                    data.Add(fy);
             }
 
-            var pagelist = doc.DocumentNode.SelectNodes("//div[@class='pager']/ul/ul/li/a");
-            var current = doc.DocumentNode.SelectSingleNode("//li[@class='thisclass']/a");
-            pagedata.CurrentPage = Convert.ToInt32(current.InnerText);
-            pagedata.MaxPage = Convert.ToInt32(pagelist[pagelist.Count - 2].InnerText);
-
-            return pagedata;
+            return data;
         }
 
         #region Sale
         private void LoadSale()
         {
-            GetSale(Url_Sale + string.Format(Url_list, "1"));
-        }
+            this.Cursor = Cursors.WaitCursor;
+            int index = 1;
+            var source = new List<FYData>();
+            var data = GetHtml(Url_Sale + string.Format(Url_list, index));
+            source.AddRange(data);
+            while (data.Count == 60)
+            {
+                data = GetHtml(Url_Sale + string.Format(Url_list, ++index));
+                source.AddRange(data);
+            }
 
-        private void GetSale(string url)
-        {
-            var data = GetHtml(url);
-            SaleList = data.Data;
-
-            pe_Sale.RecordCount = data.MaxPage * 60;
-            pe_Sale.PageIndex = data.CurrentPage;
-            pe_Sale.InitPageInfo();
-            pe_Sale.PageChanged -= pe_Sale_PageChanged;
-            pe_Sale.PageChanged += pe_Sale_PageChanged;
-        }
-
-        void pe_Sale_PageChanged(object sender, EventArgs e)
-        {
-            GetSale(Url_Sale + string.Format(Url_list, pe_Sale.PageIndex.ToString()));
+            SaleList = source;
+            this.Cursor = Cursors.Default;
         }
 
         private List<FYData> SaleList
@@ -133,7 +125,7 @@ namespace _01fy
 
         private void tm_Sale_Tick(object sender, EventArgs e)
         {
-            tm_Sale.Interval = 30000;
+            tm_Sale.Interval = 18000;
             tm_Sale.Enabled = false;
             LoadSale();
             tm_Sale.Enabled = true;
@@ -143,24 +135,19 @@ namespace _01fy
         #region Spcz
         private void LoadSpcz()
         {
-            GetSpcz(Url_Spcz + string.Format(Url_list, "1"));
-        }
+            this.Cursor = Cursors.WaitCursor;
+            int index = 1;
+            var source = new List<FYData>();
+            var data = GetHtml(Url_Spcz + string.Format(Url_list, index));
+            source.AddRange(data);
+            while (data.Count == 60)
+            {
+                data = GetHtml(Url_Spcz + string.Format(Url_list, ++index));
+                source.AddRange(data);
+            }
 
-        private void GetSpcz(string url)
-        {
-            var data = GetHtml(url);
-            SpczList = data.Data;
-
-            pe_Spcz.RecordCount = data.MaxPage * 60;
-            pe_Spcz.PageIndex = data.CurrentPage;
-            pe_Spcz.InitPageInfo();
-            pe_Spcz.PageChanged -= pe_Spcz_PageChanged;
-            pe_Spcz.PageChanged += pe_Spcz_PageChanged;
-        }
-
-        void pe_Spcz_PageChanged(object sender, EventArgs e)
-        {
-            GetSpcz(Url_Spcz + string.Format(Url_list, pe_Spcz.PageIndex.ToString()));
+            SpczList = source;
+            this.Cursor = Cursors.Default;
         }
 
         private List<FYData> SpczList
@@ -206,7 +193,7 @@ namespace _01fy
 
         private void tm_Spcz_Tick(object sender, EventArgs e)
         {
-            tm_Spcz.Interval = 30000;
+            tm_Spcz.Interval = 18000;
             tm_Spcz.Enabled = false;
             LoadSpcz();
             tm_Spcz.Enabled = true;
@@ -216,24 +203,19 @@ namespace _01fy
         #region XZLCZ
         private void LoadXZLCZ()
         {
-            GetXZLCZ(Url_XZLCZ + string.Format(Url_list, "1"));
-        }
+            this.Cursor = Cursors.WaitCursor;
+            int index = 1;
+            var source = new List<FYData>();
+            var data = GetHtml(Url_XZLCZ + string.Format(Url_list, index));
+            source.AddRange(data);
+            while(data.Count == 60)
+            {
+                data = GetHtml(Url_XZLCZ + string.Format(Url_list, ++index));
+                source.AddRange(data);
+            }
 
-        private void GetXZLCZ(string url)
-        {
-            var data = GetHtml(url);
-            XZLCZList = data.Data;
-
-            pe_XZLCZ.RecordCount = data.MaxPage * 60;
-            pe_XZLCZ.PageIndex = data.CurrentPage;
-            pe_XZLCZ.InitPageInfo();
-            pe_XZLCZ.PageChanged -= pe_XZLCZ_PageChanged;
-            pe_XZLCZ.PageChanged += pe_XZLCZ_PageChanged;
-        }
-
-        void pe_XZLCZ_PageChanged(object sender, EventArgs e)
-        {
-            GetXZLCZ(Url_XZLCZ + string.Format(Url_list, pe_XZLCZ.PageIndex.ToString()));
+            XZLCZList = source;
+            this.Cursor = Cursors.Default;
         }
 
         private List<FYData> XZLCZList
@@ -269,7 +251,6 @@ namespace _01fy
             if (e.ColumnIndex == colXZLCZTitle.Index)
             {
                 var fy = XZLCZCurrent;
-
                 if (fy != null)
                 {
                     System.Diagnostics.Process.Start(Url_XZLCZ + fy.URL);
@@ -279,19 +260,12 @@ namespace _01fy
 
         private void tm_XZLCZ_Tick(object sender, EventArgs e)
         {
-            tm_XZLCZ.Interval = 30000;
+            tm_XZLCZ.Interval = 18000;
             tm_XZLCZ.Enabled = false;
             LoadXZLCZ();
             tm_XZLCZ.Enabled = true;
         }
         #endregion        
-    }
-
-    public class PageData
-    {
-        public int CurrentPage { get; set; }
-        public int MaxPage { get; set; }
-        public List<FYData> Data { get; set; }
     }
 
     public class FYData

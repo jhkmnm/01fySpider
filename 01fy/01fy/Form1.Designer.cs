@@ -38,28 +38,23 @@
             this.SaleSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.pe_Sale = new _01fy.UcPagerEx();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgvSpcz = new System.Windows.Forms.DataGridView();
-            this.SpczSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pe_Spcz = new _01fy.UcPagerEx();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.dgvXZLCZ = new System.Windows.Forms.DataGridView();
-            this.XZLCZSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pe_XZLCZ = new _01fy.UcPagerEx();
-            this.tm_Sale = new System.Windows.Forms.Timer(this.components);
-            this.tm_Spcz = new System.Windows.Forms.Timer(this.components);
-            this.tm_XZLCZ = new System.Windows.Forms.Timer(this.components);
-            this.colSpczUrl = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSpczTitle = new System.Windows.Forms.DataGridViewLinkColumn();
             this.colSpczSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSpczPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSpczTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colXZLCZUrl = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SpczSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dgvXZLCZ = new System.Windows.Forms.DataGridView();
             this.colXZLCZTitle = new System.Windows.Forms.DataGridViewLinkColumn();
             this.colXZLCZSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colXZLCZPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colXZLCZTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.XZLCZSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tm_Sale = new System.Windows.Forms.Timer(this.components);
+            this.tm_Spcz = new System.Windows.Forms.Timer(this.components);
+            this.tm_XZLCZ = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SaleSource)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -85,11 +80,12 @@
             this.colSalePrice,
             this.colSaleTime});
             this.dgvSale.DataSource = this.SaleSource;
-            this.dgvSale.Location = new System.Drawing.Point(54, 16);
+            this.dgvSale.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvSale.Location = new System.Drawing.Point(3, 3);
             this.dgvSale.Name = "dgvSale";
             this.dgvSale.ReadOnly = true;
             this.dgvSale.RowTemplate.Height = 23;
-            this.dgvSale.Size = new System.Drawing.Size(452, 260);
+            this.dgvSale.Size = new System.Drawing.Size(755, 685);
             this.dgvSale.TabIndex = 0;
             this.dgvSale.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSale_CellContentClick);
             // 
@@ -104,30 +100,33 @@
             // colSaleTitle
             // 
             this.colSaleTitle.DataPropertyName = "Title";
-            this.colSaleTitle.HeaderText = "Title";
+            this.colSaleTitle.HeaderText = "标题";
             this.colSaleTitle.Name = "colSaleTitle";
             this.colSaleTitle.ReadOnly = true;
             this.colSaleTitle.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.colSaleTitle.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colSaleTitle.Width = 300;
             // 
             // colSaleSize
             // 
             this.colSaleSize.DataPropertyName = "Size";
-            this.colSaleSize.HeaderText = "Size";
+            this.colSaleSize.HeaderText = "面积";
             this.colSaleSize.Name = "colSaleSize";
             this.colSaleSize.ReadOnly = true;
+            this.colSaleSize.Width = 90;
             // 
             // colSalePrice
             // 
             this.colSalePrice.DataPropertyName = "Price";
-            this.colSalePrice.HeaderText = "Price";
+            this.colSalePrice.HeaderText = "价格";
             this.colSalePrice.Name = "colSalePrice";
             this.colSalePrice.ReadOnly = true;
+            this.colSalePrice.Width = 90;
             // 
             // colSaleTime
             // 
             this.colSaleTime.DataPropertyName = "Time";
-            this.colSaleTime.HeaderText = "Time";
+            this.colSaleTime.HeaderText = "发布时间";
             this.colSaleTime.Name = "colSaleTime";
             this.colSaleTime.ReadOnly = true;
             // 
@@ -140,45 +139,33 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(12, 98);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(704, 420);
+            this.tabControl1.Size = new System.Drawing.Size(769, 717);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.dgvSale);
-            this.tabPage1.Controls.Add(this.pe_Sale);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(696, 394);
+            this.tabPage1.Size = new System.Drawing.Size(761, 691);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "个人二手房";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // pe_Sale
-            // 
-            this.pe_Sale.Location = new System.Drawing.Point(64, 282);
-            this.pe_Sale.Name = "pe_Sale";
-            this.pe_Sale.PageIndex = 1;
-            this.pe_Sale.PageSize = 15;
-            this.pe_Sale.PreviousPage = 0;
-            this.pe_Sale.RecordCount = 0;
-            this.pe_Sale.Size = new System.Drawing.Size(417, 38);
-            this.pe_Sale.TabIndex = 1;
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.dgvSpcz);
-            this.tabPage2.Controls.Add(this.pe_Spcz);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(696, 394);
+            this.tabPage2.Size = new System.Drawing.Size(761, 691);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "个人商铺";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // dgvSpcz
@@ -188,45 +175,66 @@
             this.dgvSpcz.AutoGenerateColumns = false;
             this.dgvSpcz.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSpcz.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colSpczUrl,
             this.colSpczTitle,
             this.colSpczSize,
             this.colSpczPrice,
             this.colSpczTime});
             this.dgvSpcz.DataSource = this.SpczSource;
-            this.dgvSpcz.Location = new System.Drawing.Point(122, 45);
+            this.dgvSpcz.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvSpcz.Location = new System.Drawing.Point(3, 3);
             this.dgvSpcz.Name = "dgvSpcz";
             this.dgvSpcz.ReadOnly = true;
             this.dgvSpcz.RowTemplate.Height = 23;
-            this.dgvSpcz.Size = new System.Drawing.Size(452, 260);
+            this.dgvSpcz.Size = new System.Drawing.Size(755, 685);
             this.dgvSpcz.TabIndex = 2;
             this.dgvSpcz.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpcz_CellContentClick);
+            // 
+            // colSpczTitle
+            // 
+            this.colSpczTitle.DataPropertyName = "Title";
+            this.colSpczTitle.HeaderText = "标题";
+            this.colSpczTitle.Name = "colSpczTitle";
+            this.colSpczTitle.ReadOnly = true;
+            this.colSpczTitle.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colSpczTitle.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colSpczTitle.Width = 300;
+            // 
+            // colSpczSize
+            // 
+            this.colSpczSize.DataPropertyName = "Size";
+            this.colSpczSize.HeaderText = "面积";
+            this.colSpczSize.Name = "colSpczSize";
+            this.colSpczSize.ReadOnly = true;
+            this.colSpczSize.Width = 90;
+            // 
+            // colSpczPrice
+            // 
+            this.colSpczPrice.DataPropertyName = "Price";
+            this.colSpczPrice.HeaderText = "价格";
+            this.colSpczPrice.Name = "colSpczPrice";
+            this.colSpczPrice.ReadOnly = true;
+            this.colSpczPrice.Width = 90;
+            // 
+            // colSpczTime
+            // 
+            this.colSpczTime.DataPropertyName = "Time";
+            this.colSpczTime.HeaderText = "发布时间";
+            this.colSpczTime.Name = "colSpczTime";
+            this.colSpczTime.ReadOnly = true;
             // 
             // SpczSource
             // 
             this.SpczSource.DataSource = typeof(_01fy.FYData);
             // 
-            // pe_Spcz
-            // 
-            this.pe_Spcz.Location = new System.Drawing.Point(132, 311);
-            this.pe_Spcz.Name = "pe_Spcz";
-            this.pe_Spcz.PageIndex = 1;
-            this.pe_Spcz.PageSize = 15;
-            this.pe_Spcz.PreviousPage = 0;
-            this.pe_Spcz.RecordCount = 0;
-            this.pe_Spcz.Size = new System.Drawing.Size(417, 38);
-            this.pe_Spcz.TabIndex = 3;
-            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.dgvXZLCZ);
-            this.tabPage3.Controls.Add(this.pe_XZLCZ);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(696, 394);
+            this.tabPage3.Size = new System.Drawing.Size(761, 691);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.Text = "个人写字楼";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // dgvXZLCZ
@@ -236,134 +244,77 @@
             this.dgvXZLCZ.AutoGenerateColumns = false;
             this.dgvXZLCZ.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvXZLCZ.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colXZLCZUrl,
             this.colXZLCZTitle,
             this.colXZLCZSize,
             this.colXZLCZPrice,
             this.colXZLCZTime});
             this.dgvXZLCZ.DataSource = this.XZLCZSource;
-            this.dgvXZLCZ.Location = new System.Drawing.Point(122, 45);
+            this.dgvXZLCZ.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvXZLCZ.Location = new System.Drawing.Point(3, 3);
             this.dgvXZLCZ.Name = "dgvXZLCZ";
             this.dgvXZLCZ.ReadOnly = true;
             this.dgvXZLCZ.RowTemplate.Height = 23;
-            this.dgvXZLCZ.Size = new System.Drawing.Size(452, 260);
+            this.dgvXZLCZ.Size = new System.Drawing.Size(755, 685);
             this.dgvXZLCZ.TabIndex = 2;
             this.dgvXZLCZ.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvXZLCZ_CellContentClick);
+            // 
+            // colXZLCZTitle
+            // 
+            this.colXZLCZTitle.DataPropertyName = "Title";
+            this.colXZLCZTitle.HeaderText = "标题";
+            this.colXZLCZTitle.Name = "colXZLCZTitle";
+            this.colXZLCZTitle.ReadOnly = true;
+            this.colXZLCZTitle.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colXZLCZTitle.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colXZLCZTitle.Width = 300;
+            // 
+            // colXZLCZSize
+            // 
+            this.colXZLCZSize.DataPropertyName = "Size";
+            this.colXZLCZSize.HeaderText = "面积";
+            this.colXZLCZSize.Name = "colXZLCZSize";
+            this.colXZLCZSize.ReadOnly = true;
+            this.colXZLCZSize.Width = 90;
+            // 
+            // colXZLCZPrice
+            // 
+            this.colXZLCZPrice.DataPropertyName = "Price";
+            this.colXZLCZPrice.HeaderText = "价格";
+            this.colXZLCZPrice.Name = "colXZLCZPrice";
+            this.colXZLCZPrice.ReadOnly = true;
+            this.colXZLCZPrice.Width = 90;
+            // 
+            // colXZLCZTime
+            // 
+            this.colXZLCZTime.DataPropertyName = "Time";
+            this.colXZLCZTime.HeaderText = "发布时间";
+            this.colXZLCZTime.Name = "colXZLCZTime";
+            this.colXZLCZTime.ReadOnly = true;
             // 
             // XZLCZSource
             // 
             this.XZLCZSource.DataSource = typeof(_01fy.FYData);
             // 
-            // pe_XZLCZ
-            // 
-            this.pe_XZLCZ.Location = new System.Drawing.Point(132, 311);
-            this.pe_XZLCZ.Name = "pe_XZLCZ";
-            this.pe_XZLCZ.PageIndex = 1;
-            this.pe_XZLCZ.PageSize = 15;
-            this.pe_XZLCZ.PreviousPage = 0;
-            this.pe_XZLCZ.RecordCount = 0;
-            this.pe_XZLCZ.Size = new System.Drawing.Size(417, 38);
-            this.pe_XZLCZ.TabIndex = 3;
-            // 
             // tm_Sale
             // 
-            this.tm_Sale.Interval = 100;
             this.tm_Sale.Tick += new System.EventHandler(this.tm_Sale_Tick);
             // 
             // tm_Spcz
             // 
-            this.tm_Spcz.Interval = 100;
             this.tm_Spcz.Tick += new System.EventHandler(this.tm_Spcz_Tick);
             // 
             // tm_XZLCZ
             // 
-            this.tm_XZLCZ.Interval = 100;
             this.tm_XZLCZ.Tick += new System.EventHandler(this.tm_XZLCZ_Tick);
-            // 
-            // colSpczUrl
-            // 
-            this.colSpczUrl.DataPropertyName = "URL";
-            this.colSpczUrl.HeaderText = "URL";
-            this.colSpczUrl.Name = "colSpczUrl";
-            this.colSpczUrl.ReadOnly = true;
-            this.colSpczUrl.Visible = false;
-            // 
-            // colSpczTitle
-            // 
-            this.colSpczTitle.DataPropertyName = "Title";
-            this.colSpczTitle.HeaderText = "Title";
-            this.colSpczTitle.Name = "colSpczTitle";
-            this.colSpczTitle.ReadOnly = true;
-            this.colSpczTitle.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colSpczTitle.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // colSpczSize
-            // 
-            this.colSpczSize.DataPropertyName = "Size";
-            this.colSpczSize.HeaderText = "Size";
-            this.colSpczSize.Name = "colSpczSize";
-            this.colSpczSize.ReadOnly = true;
-            // 
-            // colSpczPrice
-            // 
-            this.colSpczPrice.DataPropertyName = "Price";
-            this.colSpczPrice.HeaderText = "Price";
-            this.colSpczPrice.Name = "colSpczPrice";
-            this.colSpczPrice.ReadOnly = true;
-            // 
-            // colSpczTime
-            // 
-            this.colSpczTime.DataPropertyName = "Time";
-            this.colSpczTime.HeaderText = "Time";
-            this.colSpczTime.Name = "colSpczTime";
-            this.colSpczTime.ReadOnly = true;
-            // 
-            // colXZLCZUrl
-            // 
-            this.colXZLCZUrl.DataPropertyName = "URL";
-            this.colXZLCZUrl.HeaderText = "URL";
-            this.colXZLCZUrl.Name = "colXZLCZUrl";
-            this.colXZLCZUrl.ReadOnly = true;
-            this.colXZLCZUrl.Visible = false;
-            // 
-            // colXZLCZTitle
-            // 
-            this.colXZLCZTitle.DataPropertyName = "Title";
-            this.colXZLCZTitle.HeaderText = "Title";
-            this.colXZLCZTitle.Name = "colXZLCZTitle";
-            this.colXZLCZTitle.ReadOnly = true;
-            this.colXZLCZTitle.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colXZLCZTitle.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // colXZLCZSize
-            // 
-            this.colXZLCZSize.DataPropertyName = "Size";
-            this.colXZLCZSize.HeaderText = "Size";
-            this.colXZLCZSize.Name = "colXZLCZSize";
-            this.colXZLCZSize.ReadOnly = true;
-            // 
-            // colXZLCZPrice
-            // 
-            this.colXZLCZPrice.DataPropertyName = "Price";
-            this.colXZLCZPrice.HeaderText = "Price";
-            this.colXZLCZPrice.Name = "colXZLCZPrice";
-            this.colXZLCZPrice.ReadOnly = true;
-            // 
-            // colXZLCZTime
-            // 
-            this.colXZLCZTime.DataPropertyName = "Time";
-            this.colXZLCZTime.HeaderText = "Time";
-            this.colXZLCZTime.Name = "colXZLCZTime";
-            this.colXZLCZTime.ReadOnly = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(769, 530);
+            this.ClientSize = new System.Drawing.Size(769, 717);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "第一时间房源信息";
             ((System.ComponentModel.ISupportInitialize)(this.dgvSale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SaleSource)).EndInit();
             this.tabControl1.ResumeLayout(false);
@@ -382,35 +333,30 @@
 
         private System.Windows.Forms.DataGridView dgvSale;
         private System.Windows.Forms.BindingSource SaleSource;
-        private UcPagerEx pe_Sale;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSaleUrl;
-        private System.Windows.Forms.DataGridViewLinkColumn colSaleTitle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSaleSize;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSalePrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSaleTime;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView dgvSpcz;
-        private UcPagerEx pe_Spcz;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridView dgvXZLCZ;
-        private UcPagerEx pe_XZLCZ;
         private System.Windows.Forms.BindingSource SpczSource;
         private System.Windows.Forms.BindingSource XZLCZSource;
         private System.Windows.Forms.Timer tm_Sale;
         private System.Windows.Forms.Timer tm_Spcz;
         private System.Windows.Forms.Timer tm_XZLCZ;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSpczUrl;
-        private System.Windows.Forms.DataGridViewLinkColumn colSpczTitle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSpczSize;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSpczPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSpczTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colXZLCZUrl;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSaleUrl;
+        private System.Windows.Forms.DataGridViewLinkColumn colSaleTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSaleSize;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSalePrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSaleTime;
         private System.Windows.Forms.DataGridViewLinkColumn colXZLCZTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn colXZLCZSize;
         private System.Windows.Forms.DataGridViewTextBoxColumn colXZLCZPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn colXZLCZTime;
+        private System.Windows.Forms.DataGridViewLinkColumn colSpczTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSpczSize;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSpczPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSpczTime;
     }
 }
 
